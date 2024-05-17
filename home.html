@@ -1,0 +1,120 @@
+<!-- templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Chatbot Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        .dashboard-section {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">BOT BUDDY</h1>
+
+        <!-- Input field for querying data (chatbot) -->
+        <div class="dashboard-section">
+            <form method="post" action="/">
+                <div class="form-group">
+                    <label for="user_input">Your message:</label>
+                    <input type="text" class="form-control" id="user_input" name="user_input" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+
+        <!-- Display dashboard data -->
+        <div class="dashboard-section">
+            <h2>Dashboard Metrics</h2>
+
+            <!-- Total number of listings -->
+            <p>Total Number of Listings: <span>{{ dashboard_data.total_listings }}</span></p>
+
+            <!-- Average product price -->
+            <p>Average Product Price: <span>${{ dashboard_data.average_price }}</span></p>
+
+            <!-- Total number of questions asked -->
+            <p>Total Number of Questions Asked: <span>{{ dashboard_data.total_questions }}</span></p>
+        </div>
+
+        <!-- Top 5 Products Section -->
+        <div class="dashboard-section">
+            <h2>Top 5 Products</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Product 1</td>
+                        <td><a href="https://example.com/product1" target="_blank">Link 1</a></td>
+                    </tr>
+                    <tr>
+                        <td>Product 2</td>
+                        <td><a href="https://example.com/product2" target="_blank">Link 2</a></td>
+                    </tr>
+                    <tr>
+                        <td>Product 3</td>
+                        <td><a href="https://example.com/product3" target="_blank">Link 3</a></td>
+                    </tr>
+                    <tr>
+                        <td>Product 4</td>
+                        <td><a href="https://example.com/product4" target="_blank">Link 4</a></td>
+                    </tr>
+                    <tr>
+                        <td>Product 5</td>
+                        <td><a href="https://example.com/product5" target="_blank">Link 5</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Chatbot conversation -->
+        {% if user_input %}
+            <div class="dashboard-section">
+                <p class="font-italic"><strong>You:</strong> {{ user_input }}</p>
+            </div>
+        {% endif %}
+
+        {% if bot_response %}
+            <div class="dashboard-section">
+                <p class="font-italic"><strong>Bot:</strong> {{ bot_response }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
